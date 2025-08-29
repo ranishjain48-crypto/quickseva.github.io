@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Service - Udaipur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0ea5e9;
+      --primary-600: #0284c7;
+      --accent: #22c55e;
+      --bg: #0b1220;
+      --card: #ffffff;
+      --muted: #6b7280;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Arial, sans-serif;
+      margin: 0;
+      background: #f3f4f6;
+      color: #0f172a;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #ffffffcc;
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-weight: 700
+    }
+
+    .brand .logo img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px
+    }
+
+    .brand span {
+      font-size: 1.1rem
+    }
+
+    .call-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      padding: .6rem .9rem;
+      border-radius: 10px;
+      font-weight: 600
+    }
+
+    .hero {
+      background: radial-gradient(1000px 400px at 50% -10%, #38bdf8 0%, #0ea5e9 25%, #0b1220 60%, #0b1220 100%), var(--bg);
+      color: #e5f6ff;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1rem 2.5rem
+    }
+
+    .hero h1 {
+      margin: 0 0 .5rem;
+      font-size: clamp(1.8rem, 3.8vw, 2.6rem)
+    }
+
+    .hero p {
+      margin: 0 0 1rem;
+      color: #c6e9ff
+    }
+
+    .badges {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap
+    }
+
+    .badge {
+      background: #0ea5e933;
+      color: white;
+      padding: .35rem .6rem;
+      border: 1px solid #38bdf8;
+      border-radius: 999px;
+      font-size: .85rem
+    }
+
+    .hero-actions {
+      margin-top: 1rem;
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      padding: .7rem 1rem;
+      border-radius: 12px;
+      border: none;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer
+    }
+
+    .btn-primary {
+      background: white;
+      color: #0b1220
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 1px solid #7dd3fc
+    }
+
+    .section {
+      padding: 2rem 1rem
+    }
+
+    .section h2 {
+      margin: .5rem auto 1rem;
+      max-width: 1100px
+    }
+
+    .grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: 0 6px 22px rgba(2, 8, 23, .06);
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(2, 8, 23, .12)
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover
+    }
+
+    .card .pad {
+      padding: 1rem
+    }
+
+    .card h3 {
+      margin: .2rem 0 .35rem
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: .6rem
+    }
+
+    .rating {
+      color: #f59e0b;
+      font-weight: 700
+    }
+
+    .actions {
+      display: flex;
+      gap: .5rem
+    }
+
+    .button {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .6rem .8rem;
+      border-radius: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600
+    }
+
+    .button.call {
+      background: #16a34a
+    }
+
+    .button.wa {
+      background: #22c55e
+    }
+
+    .form-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      padding: 1.25rem;
+      box-shadow: 0 6px 22px rgba(2, 8, 23, .06)
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .8rem
+    }
+
+    label {
+      font-weight: 600
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: .75rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      font: inherit
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .8rem
+    }
+
+    @media (max-width:640px) {
+      .two {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .submit {
+      background: var(--primary);
+      border: none;
+      color: white;
+      padding: .8rem 1rem;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer
+    }
+
+    .submit:hover {
+      background: var(--primary-600)
+    }
+
+    .help {
+      color: var(--muted);
+      font-size: .85rem
+    }
+
+    .gpay-section {
+      text-align: center;
+      margin: 2rem auto;
+      background: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 12px;
+      max-width: 600px
+    }
+
+    .gpay-section a {
+      background: #4285F4;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: .5rem
+    }
+
+    .gpay-section p {
+      color: #555
+    }
+
+    footer {
+      background: #0b1220;
+      color: #9fb6c6;
+      margin-top: 2rem
+    }
+
+    .foot {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.25rem
+    }
+
+    .foot .caption {
+      font-style: italic;
+      color: #c3d9e6
+    }
+
+    .credits {
+      border-top: 1px solid #1e2a3a;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      gap: .75rem;
+      flex-wrap: wrap
+    }
+  </style>
+</head>
+
+<body>
+  <div class="brand">
+    <img src="https://lh3.googleusercontent.com/tOTPnf9LvoHigEWroSFpxuz0N9iRqsId5NHn2e3WyGnCC8tXlJ0cUjn8TwackDjE7kU "
+      alt="Quick Seva Logo" style="height:60px; border-radius:8px;">
+    <span>QUICK SEVA – Home Services</span>
+  </div>
+
+  <div class="site-header">
+    <div class="wrap">
+      <div class="site-header">
+        <div class="wrap">
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Trusted Home Services in Udaipur</h1>
+      <p>Plumber • Electrician • Cleaning • AC Repair • Carpenter — fast, reliable & affordable.</p>
+      <div class="badges">
+        <div class="badge">⏱ 60–90 min quick response</div>
+        <div class="badge">🛡 Verified Partners</div>
+        <div class="badge">⭐ 4.5/5 Avg. Rating</div>
+      </div>
+      <div class="hero-actions">
+
+      </div>
+  </section>
+
+  <section id="services" class="section">
+    <h2>Our Services</h2>
+    <div class="grid">
+      <div class="card">
+        <img
+          src="https://media.gettyimages.com/id/1093678798/photo/stationary-engineer-at-work.jpg?s=612x612&w=0&k=20&c=lSKIIxxUZoInuWX8H7UtaBA9Mbm4W86sMYuvGhnskkM="
+          alt="Plumber">
+        <div class="pad">
+          <h3>Plumber</h3>
+          <div class="meta"><span>Udaipur city</span><span class="rating">★★★★☆ 4.2</span></div>
+          <div class="actions">
+            <a href="tel:9602713323" class="button call">📞 Call</a>
+            <a href="https://wa.me/7976551499" target="_blank" class="button wa">💬 WhatsApp</a>
+           <a
+              href="upi://pay?pa=7976551499@mbk&pn=QuickSeva&cu=INR&tn=Plumber%20services" class="submit">Book now
+              </a>
+            </a>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          src="https://media.gettyimages.com/id/511990814/photo/industrial-electric-panel-repair.jpg?s=1024x1024&w=gi&k=20&c=CmrJUFw6rRTI6vK_wU6dHxkqTjojBTxZvRqTfdpFRu4="
+          alt="Electrician">
+        <div class="pad">
+          <h3>Electrician</h3>
+          <div class="meta"><span>Udaipur city</span><span class="rating">★★★★★ 4.8</span></div>
+          <div class="actions">
+            <a href="tel:9602713323" class="button call">📞 Call</a>
+            <a href="https://wa.me/7976551499" target="_blank" class="button wa">💬 WhatsApp</a>
+              <a
+              href="upi://pay?pa=7976551499@mbk&pn=QuickSeva&cu=INR&tn=Plumber%20services" class="submit">Book now
+              </a>
+            
+            
+
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          src="https://media.gettyimages.com/id/1254788325/photo/forget-sweet-try-home-sanitised-home.jpg?s=612x612&w=0&k=20&c=q6t80qrWvnWRln4PoxF8giI0hr9cNqdvFQiooFqIK3M="
+          alt="Cleaning">
+        <div class="pad">
+          <h3>Cleaning</h3>
+          <div class="meta"><span>Homes & Offices</span><span class="rating">★★★★☆ 4.3</span></div>
+          <div class="actions">
+            <a href="tel:9602713323" class="button call">📞 Call</a>
+            <a href="https://wa.me/7976551499" target="_blank" class="button wa">💬 WhatsApp</a>
+              <a
+              href="upi://pay?pa=7976551499@mbk&pn=QuickSeva&cu=INR&tn=Plumber%20services" class="submit">Book now
+              </a>
+            
+            
+
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          src="https://media.gettyimages.com/id/1483862180/photo/ac-unit-installment.jpg?s=612x612&w=0&k=20&c=HVYI1grmPhoZ1387mOL4DzgAHBgjTrbn1c0TlpiPCts="
+          alt="AC Repair">
+        <div class="pad">
+          <h3>AC Repair</h3>
+          <div class="meta"><span>Split & Window</span><span class="rating">★★★★☆ 4.4</span></div>
+          <div class="actions">
+            <a href="tel:9602713323" class="button call">📞 Call</a>
+            <a href="https://wa.me/7976551499" target="_blank" class="button wa">💬 WhatsApp</a>
+            <a
+              href="upi://pay?pa=7976551499@mbk&pn=QuickSeva&cu=INR&tn=Plumber%20services" class="submit">Book now
+              </a>
+            
+
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          src="https://media.gettyimages.com/id/1061173208/photo/young-carpenter-using-sander-while-working-on-a-piece-of-wood.jpg?s=612x612&w=0&k=20&c=dG_8gk4Zkfq2hsXcxZSHzc1e39QpQODb5AXvx1dWRAw="
+          alt="Carpenter">
+        <div class="pad">
+          <h3>Carpenter</h3>
+          <div class="meta"><span>Furniture & Repair</span><span class="rating">★★★★☆ 4.5</span></div>
+          <div class="actions">
+            <a href="tel:9602713323" class="button call">📞 Call</a>
+            <a href="https://wa.me/7976551499" target="_blank" class="button wa">💬 WhatsApp</a>
+             <a
+              href="upi://pay?pa=7976551499@mbk&pn=QuickSeva&cu=INR&tn=Plumber%20services" class="submit">Book now
+              </a>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section id="book" class="section">
+  <div class="form-wrap">
+    <h2>Book a Service</h2>
+
+    <form onsubmit="sendWhatsApp(event)">
+      <div class="two">
+        <div>
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="e.g. Rahul Sharma" required>
+        </div>
+        <div>
+          <label for="mobile">Mobile Number</label>
+          <input type="tel" id="mobile" placeholder="10-digit mobile" pattern="[0-9]{10}" required>
+        </div>
+      </div>
+
+      <div class="two">
+        <div>
+          <label for="location">Location/Address</label>
+          <input type="text" id="location" placeholder="Hiran Magri, Udaipur" required>
+        </div>
+        <div>
+          <label for="service">Select Service</label>
+          <select id="service" required>
+            <option value="Plumber">Plumber</option>
+            <option value="Electrician">Electrician</option>
+            <option value="Cleaning">Cleaning</option>
+            <option value="AC Repair">AC Repair</option>
+            <option value="Carpenter">Carpenter</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label for="details">Issue Details (Optional)</label>
+        <textarea id="details" rows="3" placeholder="Briefly describe the problem..."></textarea>
+      </div>
+
+      <button class="submit" type="submit">Send Request via WhatsApp</button>
+    </form>
+  </div>
+</section>
+<script>
+function sendWhatsApp(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const mobile = document.getElementById("mobile").value.trim();
+  const service = document.getElementById("service").value;
+  const details = document.getElementById("details").value.trim();
+
+  // Admin WhatsApp Number
+  const phoneNumber = "919602713323";
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      const locationLink = `https://www.google.com/maps?q=${lat},${lon}`;
+
+      const message = `*New Service Request* 👇
+👤 *Name:* ${name}
+📞 *Mobile:* ${mobile}
+🛠 *Service:* ${service}
+📝 *Details:* ${details || "N/A"}
+📍 *Location:* ${locationLink}`;
+
+      const waURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(waURL, "_blank");
+    }, function(error) {
+      alert("Location access deny kiya gaya hai. Kripya manually location dalen.");
+    });
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+</script>
